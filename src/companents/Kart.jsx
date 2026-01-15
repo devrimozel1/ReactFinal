@@ -1,5 +1,19 @@
+import { useState } from "react";
+
 function Kart({ description, title, isCompleted }) {
+
     let time = new Date().toLocaleDateString();
+
+    const [isCompi, setisCompi] = useState(isCompleted)
+
+    const onayla = () => {
+        setisCompi(true)
+    }
+
+    const red = () => {
+        setisCompi(false)
+    }
+
     return (
 
         <div className="kart" style={
@@ -10,7 +24,7 @@ function Kart({ description, title, isCompleted }) {
                 display: "flex",
                 flexDirection: "row",
                 borderRadius: "10px",
-                backgroundColor: isCompleted ? "Green" : "Red"
+                backgroundColor: isCompi ? "Green" : "Red"
             }}>
             <div className="kartleft" style={{
                 display: "flex",
@@ -34,12 +48,22 @@ function Kart({ description, title, isCompleted }) {
                 padding: "5px"
             }}>
                 <h2>{time}</h2>
-                {isCompleted ? <></> : <button style={{
+                {isCompi ? <button 
+                    onClick={red}
+                    style={{
                     width: "100px",
                     height: "30px",
                     borderRadius: "5px",
                     border: "1px solid black"
-                }}>Onayla</button>}
+                }}>Geri Al</button> : <button
+                    onClick={onayla}
+                    style={{
+                        width: "100px",
+                        height: "30px",
+                        borderRadius: "5px",
+                        border: "1px solid black"
+                    }}>Onayla</button>}
+
             </div>
         </div>
     )
